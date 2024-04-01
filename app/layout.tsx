@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-// import "./globals.css"; //un comment to use tailwind
-import "bootstrap/dist/css/bootstrap.css";
+import "./globals.css"; //un comment to use tailwind
+// import "bootstrap/dist/css/bootstrap.css";
+import { AuthProvider } from "./providers/authprovider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-dark text-white">{children}</body>
+      <body className="bg-slate-800" style={{ height: "100%" }}>
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   );
 }

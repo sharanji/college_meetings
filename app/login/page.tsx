@@ -1,11 +1,10 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import LoadingIcons from "react-loading-icons";
 import axios from "axios";
 import { headers } from "next/headers";
-
 const LoginPage = () => {
   const router = useRouter();
   const [userName, setUserName] = useState("");
@@ -23,10 +22,6 @@ const LoginPage = () => {
           },
         })
         .then((response) => {
-          localStorage.setItem(
-            "loginDetails",
-            JSON.stringify({ userId: 10, userName: "Sahana" })
-          );
           router.replace("/");
         });
     } else {
@@ -36,71 +31,50 @@ const LoginPage = () => {
   }
 
   return (
-    <div
-      className="row d-flex justify-content-center align-items-center"
-      style={{
-        height: "80vh",
-        width: "100%",
-        color: "#00000",
-        overflow: "hidden",
-      }}
-    >
-      <div className="col-md-4 align-middle">
-        <div className="row d-flex justify-content-center align-items-center">
-          <div className="col-12 text-center">
-            <Image
-              src="/logo.png"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={80}
-              height={80}
-            />
-          </div>
+    <div className="hero min-h-screen bg-base-200">
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="text-center lg:text-left">
+          <h1 className="text-5xl font-bold">Login now!</h1>
+          <p className="py-6">
+            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
+            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
+            a id nisi.
+          </p>
         </div>
-        <form
-          method="post"
-          onSubmit={(e) => {
-            e.preventDefault();
-            tryLogin();
-          }}
-        >
-          <label htmlFor="userName">Username</label>
-          <input
-            type="email"
-            id="userName"
-            className="form-control"
-            required
-            placeholder="Enter Your Username"
-            onChange={(e) => setUserName(e.target.value)}
-          />
-          <label className="mt-3" htmlFor="Password">
-            Password
-          </label>
-          <input
-            type="password"
-            id="Password"
-            className="form-control"
-            placeholder="Enter Your Password"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <div className="d-flex justify-content-end gap-2 my-3">
-            <button
-              className="btn btn-secondary"
-              type="button"
-              onClick={() => router.push("/signup")}
-            >
-              Sign Up
-            </button>
-            <button
-              className="btn btn-primary"
-              type="submit"
-              style={{ height: "40px" }}
-            >
-              {isLoading ? <LoadingIcons.Oval height={30} /> : "Submit"}
-            </button>
-          </div>
-        </form>
+        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <form className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                type="email"
+                placeholder="email"
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              <input
+                type="password"
+                placeholder="password"
+                className="input input-bordered"
+                required
+              />
+              <label className="label">
+                <a href="#" className="label-text-alt link link-hover">
+                  Forgot password?
+                </a>
+              </label>
+            </div>
+            <div className="form-control mt-6">
+              <button className="btn btn-primary">Login</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
