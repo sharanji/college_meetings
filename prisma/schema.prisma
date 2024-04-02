@@ -18,14 +18,12 @@ model User {
   userName String @unique
   password String
   userType Int // 0 -> teacher 1-> student
-  Class    Class? @relation(fields: [classId], references: [id])
   classId  Int?
 }
 
 model Class {
   id        Int        @id @default(autoincrement())
   className String     @unique
-  users     User[]
   userid    Int        @default(1)
   meetings  Meetings[]
 }

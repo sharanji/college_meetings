@@ -23,7 +23,7 @@ const TeacherHome = () => {
           <div className="card-actions">
             <button
               className="btn btn-dark"
-              onClick={() => router.push("create_meetings")}
+              onClick={() => router.push("manage_class/newclass")}
             >
               Create Now
             </button>
