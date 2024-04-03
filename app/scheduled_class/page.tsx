@@ -81,7 +81,7 @@ const ScheduledClass = () => {
                               session.data?.user.userName!
                             );
 
-                            // router.push("./room.html?room=" + meet["classId"]);
+                            router.push("./room.html?room=" + meet["classId"]);
                           }}
                         >
                           Join now

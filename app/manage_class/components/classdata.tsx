@@ -27,7 +27,7 @@ const Classdata = async ({ classId }: any) => {
                 <td>{c["meetingName"]}</td>
                 <td>{c["meetingType"]}</td>
                 <td>{c["date"]}</td>
-                <td>
+                <td width={"30%"}>
                   {c["status"] == 0 ? (
                     <button
                       className="btn btn-success"
@@ -50,14 +50,30 @@ const Classdata = async ({ classId }: any) => {
                   ) : (
                     <>
                       {c["status"] == 2 ? (
-                        <button
-                          className="btn btn-warning"
-                          onClick={() =>
-                            router.push("./room.html?room=" + c["id"])
-                          }
-                        >
-                          Meeting Ongoing
-                        </button>
+                        <>
+                          <button
+                            className="btn btn-warning"
+                            onClick={() =>
+                              router.push("./room.html?room=" + c["id"])
+                            }
+                          >
+                            Meeting Ongoing
+                          </button>
+                          <button
+                            className="btn btn-error mx-2"
+                            onClick={async () => {
+                              var response = await axios.post(
+                                "/api/meetings/end",
+                                {
+                                  meetId: c["id"],
+                                }
+                              );
+                              router.refresh();
+                            }}
+                          >
+                            End Meeting
+                          </button>
+                        </>
                       ) : (
                         <button className="btn btn-error">Meeting Ended</button>
                       )}

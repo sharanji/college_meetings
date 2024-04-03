@@ -53,8 +53,6 @@ export async function POST(req: NextRequest) {
                 html: ClassStartedEmail({
                     classAjenda: jsonBody['classAjenda'],
                     classDetail: meeting!,
-                    student: student,
-                    teacher: teacher!,
                 }),
             };
 

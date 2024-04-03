@@ -1,14 +1,10 @@
 import { Class, Meetings, User } from "@prisma/client";
 
 export interface mailDetails {
-  student: User;
-  teacher: User;
   classAjenda: string;
   classDetail: Meetings;
 }
 export default function ClassStartedEmail({
-  student,
-  teacher,
   classAjenda,
   classDetail,
 }: mailDetails) {
@@ -47,8 +43,6 @@ export default function ClassStartedEmail({
           <p>We look forward to having you in <strong>${
             classDetail.meetingName
           }</strong> and sharing an enriching learning journey together.</p>
-          <p>Best regards,</p>
-          <p>${teacher.userName}</p>
       </div>
   </body>
   </html>
